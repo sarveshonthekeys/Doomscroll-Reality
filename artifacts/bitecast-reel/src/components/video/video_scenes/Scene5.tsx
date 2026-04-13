@@ -14,17 +14,39 @@ export function Scene5() {
 
   return (
     <motion.div
-      className="absolute inset-0 flex flex-col items-center justify-center bg-[#FFFFFF] overflow-hidden"
+      className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden"
+      style={{ background: '#080808' }}
       initial={{ y: '100%' }}
       animate={{ y: '0%' }}
       exit={{ opacity: 0, scale: 1.2 }}
       transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
     >
-      {/* Real Bitecast logo */}
+      {/* Subtle red glow behind logo */}
+      <motion.div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: '60cqw',
+          height: '60cqw',
+          background: 'radial-gradient(circle, rgba(204,0,0,0.25) 0%, transparent 70%)',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -75%)',
+        }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+      />
+
+      {/* Bitecast logo — inverted for dark background */}
       <motion.img
         src={`${import.meta.env.BASE_URL}images/logo.png`}
-        className="object-contain drop-shadow-xl"
-        style={{ width: '35cqw', height: '35cqw', marginBottom: '6cqw' }}
+        className="object-contain"
+        style={{
+          width: '35cqw',
+          height: '35cqw',
+          marginBottom: '6cqw',
+          filter: 'invert(1)',
+        }}
         initial={{ scale: 0, rotate: -45 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 200, delay: 0.4 }}
@@ -32,7 +54,7 @@ export function Scene5() {
 
       <div className="text-center" style={{ padding: '0 8cqw' }}>
         <motion.h1
-          className="font-black text-[#0A1128] tracking-tighter leading-none"
+          className="font-black text-white tracking-tighter leading-none"
           style={{ fontSize: '18cqw' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,8 +64,8 @@ export function Scene5() {
         </motion.h1>
 
         <motion.p
-          className="font-medium text-[#64748B] leading-tight"
-          style={{ fontSize: '5.5cqw', marginTop: '4cqw' }}
+          className="font-medium leading-tight"
+          style={{ fontSize: '5cqw', color: '#888888', marginTop: '4cqw' }}
           initial={{ opacity: 0 }}
           animate={phase >= 1 ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
@@ -58,7 +80,8 @@ export function Scene5() {
             background: 'var(--color-primary)',
             padding: '3cqw 8cqw',
             fontSize: '5cqw',
-            boxShadow: '0 10px 40px rgba(0,209,178,0.4)',
+            boxShadow: '0 10px 40px rgba(204,0,0,0.35)',
+            letterSpacing: '0.05em',
           }}
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={phase >= 2 ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }}
@@ -68,25 +91,24 @@ export function Scene5() {
         </motion.div>
       </div>
 
-      {/* Decorative clean UI lines */}
+      {/* Decorative dark lines */}
       <motion.div
-        className="absolute bg-[#64748B]/20 rounded-full"
-        style={{ top: '10vh', left: '10cqw', height: '2cqw' }}
+        className="absolute rounded-full"
+        style={{ top: '10vh', left: '10cqw', height: '1.5cqw', background: 'rgba(255,255,255,0.1)' }}
         initial={{ width: 0 }}
         animate={{ width: '15cqw' }}
         transition={{ duration: 1, delay: 1 }}
       />
       <motion.div
-        className="absolute bg-[#64748B]/20 rounded-full"
-        style={{ top: 'calc(10vh + 4cqw)', left: '10cqw', height: '2cqw' }}
+        className="absolute rounded-full"
+        style={{ top: 'calc(10vh + 4cqw)', left: '10cqw', height: '1.5cqw', background: 'rgba(255,255,255,0.07)' }}
         initial={{ width: 0 }}
         animate={{ width: '25cqw' }}
         transition={{ duration: 1, delay: 1.2 }}
       />
-
       <motion.div
         className="absolute rounded-full"
-        style={{ bottom: '10vh', right: '10cqw', height: '2cqw', background: 'rgba(0,209,178,0.3)' }}
+        style={{ bottom: '10vh', right: '10cqw', height: '1.5cqw', background: 'rgba(204,0,0,0.4)' }}
         initial={{ width: 0 }}
         animate={{ width: '20cqw' }}
         transition={{ duration: 1, delay: 1.4 }}

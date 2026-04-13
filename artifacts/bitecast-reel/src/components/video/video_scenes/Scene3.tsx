@@ -20,11 +20,19 @@ export function Scene3() {
       exit={{ clipPath: 'circle(0% at 50% 50%)', opacity: 0 }}
       transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
     >
-      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0" style={{ background: '#0A0A0A' }} />
+
+      {/* Subtle red vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(204,0,0,0.18) 100%)',
+        }}
+      />
 
       <div className="relative z-10 w-full text-center" style={{ padding: '0 8cqw' }}>
         <h2
-          className="font-black text-[#0A1128] leading-[1.1] tracking-tight"
+          className="font-black text-white leading-[1.1] tracking-tight"
           style={{ fontSize: '15cqw' }}
         >
           <motion.span
@@ -45,7 +53,7 @@ export function Scene3() {
             learn
           </motion.span>
           <motion.span
-            className="block"
+            className="block text-white"
             initial={{ opacity: 0, y: 30, rotateX: 90 }}
             animate={phase >= 2 ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: 90 }}
             transition={{ type: 'spring', damping: 20, stiffness: 200 }}
@@ -55,12 +63,12 @@ export function Scene3() {
         </h2>
       </div>
 
-      {/* Abstract confusion lines */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+      {/* Abstract lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-15" viewBox="0 0 100 100" preserveAspectRatio="none">
         <motion.path
           d="M 10 50 Q 30 10, 50 50 T 90 50"
           fill="transparent"
-          stroke="#0A1128"
+          stroke="#F0F0F0"
           strokeWidth="0.5"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1, d: ['M 10 50 Q 30 10, 50 50 T 90 50', 'M 10 50 Q 30 90, 50 50 T 90 50', 'M 10 50 Q 30 10, 50 50 T 90 50'] }}
@@ -69,7 +77,7 @@ export function Scene3() {
         <motion.path
           d="M 20 80 Q 50 20, 80 80"
           fill="transparent"
-          stroke="#F43F5E"
+          stroke="#CC0000"
           strokeWidth="1"
           initial={{ pathLength: 0 }}
           animate={phase >= 1 ? { pathLength: 1 } : { pathLength: 0 }}
