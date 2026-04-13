@@ -5,6 +5,7 @@ import { Scene2 } from './video_scenes/Scene2';
 import { Scene3 } from './video_scenes/Scene3';
 import { Scene4 } from './video_scenes/Scene4';
 import { Scene5 } from './video_scenes/Scene5';
+import { AudioManager } from './AudioManager';
 
 const SCENE_DURATIONS = {
   scene1: 3000,
@@ -69,6 +70,8 @@ export default function VideoTemplate() {
             transition={{ duration: 4, ease: 'easeInOut' }}
           />
         </div>
+
+        <AudioManager currentScene={currentScene} />
 
         <AnimatePresence mode="popLayout">
           {currentScene === 0 && <Scene1 key="scene1" />}
