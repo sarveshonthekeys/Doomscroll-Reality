@@ -1,0 +1,19 @@
+uploads = []
+
+[[generated]]
+id = "wps3Nfkh5qfaNi5UPS4I9"
+uri = "file://artifacts/bitecast-reel/public/images/logo.png"
+type = "image"
+title = "Minimalist logo mark for Bitecast"
+
+[[generated]]
+id = "iv_ktBy7z4vhKVYTBytxc"
+uri = "file://artifacts/bitecast-reel/public/images/split.png"
+type = "image"
+title = "Chaos vs clarity split visual"
+
+[[outputs]]
+id = "_ksG3awIGNpzzn6X1keon"
+uri = "file://artifacts/bitecast-reel/public/images/scrolling1.jpg"
+type = "image"
+title = "person scrolling smartphone mindlessly at night"

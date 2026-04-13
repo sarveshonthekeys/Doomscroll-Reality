@@ -1,0 +1,84 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+export function Scene4() {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 1000),
+      setTimeout(() => setPhase(2), 2000),
+    ];
+    return () => timers.forEach(t => clearTimeout(t));
+  }, []);
+
+  return (
+    <motion.div 
+      className="absolute inset-0 flex bg-color-bg-dark overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ y: '-100%' }}
+      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+    >
+      {/* Left Side: Chaos */}
+      <motion.div 
+        className="w-1/2 h-full relative border-r border-white/10"
+        initial={{ x: '-100%' }}
+        animate={{ x: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.2 }}
+      >
+        <motion.img 
+          src={`${import.meta.env.BASE_URL}images/split.png`} 
+          className="absolute inset-0 w-[200%] max-w-none h-full object-cover object-left opacity-60"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </motion.div>
+
+      {/* Right Side: Clarity */}
+      <motion.div 
+        className="w-1/2 h-full relative"
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.4 }}
+      >
+        <motion.img 
+          src={`${import.meta.env.BASE_URL}images/split.png`} 
+          className="absolute inset-0 w-[200%] max-w-none h-full object-cover object-right right-0 ml-[-100%]"
+        />
+        <div className="absolute inset-0 bg-color-primary/20 mix-blend-overlay" />
+      </motion.div>
+
+      {/* Center Text Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div className="bg-color-bg-dark/90 backdrop-blur-md px-8 py-6 rounded-2xl border border-white/10 shadow-2xl w-[85vw] text-center">
+          <h2 className="text-[10vw] font-black text-white leading-[1.1] tracking-tight">
+            <motion.span 
+              className="block text-color-secondary-foreground/60"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              Your feed
+            </motion.span>
+            <motion.span 
+              className="block"
+              initial={{ opacity: 0, y: 10 }}
+              animate={phase >= 1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ delay: 0.2 }}
+            >
+              shapes your
+            </motion.span>
+            <motion.span 
+              className="block text-color-primary mt-2 text-[14vw]"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={phase >= 2 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ type: 'spring', damping: 15, stiffness: 300 }}
+            >
+              MIND
+            </motion.span>
+          </h2>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
