@@ -18,56 +18,66 @@ export default function VideoTemplate() {
   const { currentScene } = useVideoPlayer({ durations: SCENE_DURATIONS });
 
   return (
-    <div className="relative w-full h-screen mx-auto overflow-hidden bg-color-bg-dark flex justify-center max-w-[calc(100vh*9/16)] border-x border-white/10 shadow-2xl">
-      {/* Persistent noise overlay */}
-      <div 
-        className="absolute inset-0 z-50 pointer-events-none opacity-20 mix-blend-overlay"
+    <div className="w-full h-screen bg-black flex items-center justify-center overflow-hidden">
+      {/* 9:16 container — all scene content must stay inside this */}
+      <div
+        className="relative overflow-hidden flex-shrink-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          aspectRatio: '9 / 16',
+          height: '100vh',
+          width: 'calc(100vh * 9 / 16)',
+          containerType: 'inline-size',
         }}
-      />
+      >
+        {/* Persistent noise overlay */}
+        <div
+          className="absolute inset-0 z-50 pointer-events-none opacity-20 mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
 
-      {/* Persistent background layers */}
-      <div className="absolute inset-0">
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-color-bg-dark to-[#050814]"
-          animate={{
-            opacity: currentScene >= 3 ? 0.3 : 1
-          }}
-          transition={{ duration: 1 }}
-        />
-        
-        {/* Glow orb */}
-        <motion.div 
-          className="absolute rounded-full blur-[100px] opacity-40 mix-blend-screen"
-          style={{ width: '80vh', height: '80vh', background: 'var(--color-primary)' }}
-          animate={{
-            x: currentScene === 0 ? '-30%' : currentScene === 1 ? '10%' : currentScene === 2 ? '-10%' : currentScene === 3 ? '40%' : '5%',
-            y: currentScene === 0 ? '-20%' : currentScene === 1 ? '40%' : currentScene === 2 ? '10%' : currentScene === 3 ? '-20%' : '30%',
-            scale: currentScene === 4 ? 1.5 : 1,
-            opacity: currentScene === 4 ? 0.2 : 0.4
-          }}
-          transition={{ duration: 3, ease: 'easeInOut' }}
-        />
-        
-        <motion.div 
-          className="absolute rounded-full blur-[120px] opacity-30 mix-blend-screen"
-          style={{ width: '90vh', height: '90vh', background: 'var(--color-accent)' }}
-          animate={{
-            x: currentScene === 0 ? '40%' : currentScene === 1 ? '-20%' : currentScene === 2 ? '30%' : currentScene === 3 ? '-40%' : '-10%',
-            y: currentScene === 0 ? '60%' : currentScene === 1 ? '-10%' : currentScene === 2 ? '50%' : currentScene === 3 ? '30%' : '-30%',
-          }}
-          transition={{ duration: 4, ease: 'easeInOut' }}
-        />
+        {/* Persistent background layers */}
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-[#0A1128] to-[#050814]"
+            animate={{ opacity: currentScene >= 3 ? 0.3 : 1 }}
+            transition={{ duration: 1 }}
+          />
+
+          {/* Glow orb 1 */}
+          <motion.div
+            className="absolute rounded-full blur-[80px] opacity-40 mix-blend-screen"
+            style={{ width: '120cqw', height: '120cqw', background: 'var(--color-primary)', top: 0, left: 0 }}
+            animate={{
+              x: currentScene === 0 ? '-30%' : currentScene === 1 ? '10%' : currentScene === 2 ? '-10%' : currentScene === 3 ? '40%' : '5%',
+              y: currentScene === 0 ? '-20%' : currentScene === 1 ? '40%' : currentScene === 2 ? '10%' : currentScene === 3 ? '-20%' : '30%',
+              scale: currentScene === 4 ? 1.5 : 1,
+              opacity: currentScene === 4 ? 0.2 : 0.4,
+            }}
+            transition={{ duration: 3, ease: 'easeInOut' }}
+          />
+
+          {/* Glow orb 2 */}
+          <motion.div
+            className="absolute rounded-full blur-[100px] opacity-30 mix-blend-screen"
+            style={{ width: '130cqw', height: '130cqw', background: 'var(--color-accent)', top: 0, left: 0 }}
+            animate={{
+              x: currentScene === 0 ? '40%' : currentScene === 1 ? '-20%' : currentScene === 2 ? '30%' : currentScene === 3 ? '-40%' : '-10%',
+              y: currentScene === 0 ? '60%' : currentScene === 1 ? '-10%' : currentScene === 2 ? '50%' : currentScene === 3 ? '30%' : '-30%',
+            }}
+            transition={{ duration: 4, ease: 'easeInOut' }}
+          />
+        </div>
+
+        <AnimatePresence mode="popLayout">
+          {currentScene === 0 && <Scene1 key="scene1" />}
+          {currentScene === 1 && <Scene2 key="scene2" />}
+          {currentScene === 2 && <Scene3 key="scene3" />}
+          {currentScene === 3 && <Scene4 key="scene4" />}
+          {currentScene === 4 && <Scene5 key="scene5" />}
+        </AnimatePresence>
       </div>
-
-      <AnimatePresence mode="popLayout">
-        {currentScene === 0 && <Scene1 key="scene1" />}
-        {currentScene === 1 && <Scene2 key="scene2" />}
-        {currentScene === 2 && <Scene3 key="scene3" />}
-        {currentScene === 3 && <Scene4 key="scene4" />}
-        {currentScene === 4 && <Scene5 key="scene5" />}
-      </AnimatePresence>
     </div>
   );
 }

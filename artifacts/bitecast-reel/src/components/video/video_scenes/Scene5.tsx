@@ -13,42 +13,53 @@ export function Scene5() {
   }, []);
 
   return (
-    <motion.div 
-      className="absolute inset-0 flex flex-col items-center justify-center bg-color-bg-light overflow-hidden"
+    <motion.div
+      className="absolute inset-0 flex flex-col items-center justify-center bg-[#FFFFFF] overflow-hidden"
       initial={{ y: '100%' }}
       animate={{ y: '0%' }}
       exit={{ opacity: 0, scale: 1.2 }}
       transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
     >
-      <motion.img 
-        src={`${import.meta.env.BASE_URL}images/logo.png`} 
-        className="w-[40vw] h-[40vw] object-contain mb-8 drop-shadow-xl"
+      {/* Real Bitecast logo */}
+      <motion.img
+        src={`${import.meta.env.BASE_URL}images/logo.png`}
+        className="object-contain drop-shadow-xl"
+        style={{ width: '35cqw', height: '35cqw', marginBottom: '6cqw' }}
         initial={{ scale: 0, rotate: -45 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 200, delay: 0.4 }}
       />
-      
-      <div className="text-center px-[8vw]">
-        <motion.h1 
-          className="text-[16vw] font-black text-color-bg-dark tracking-tighter leading-none"
+
+      <div className="text-center" style={{ padding: '0 8cqw' }}>
+        <motion.h1
+          className="font-black text-[#0A1128] tracking-tighter leading-none"
+          style={{ fontSize: '18cqw' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           Bitecast
         </motion.h1>
-        
-        <motion.p 
-          className="text-[5vw] font-medium text-color-text-muted mt-4 leading-tight"
+
+        <motion.p
+          className="font-medium text-[#64748B] leading-tight"
+          style={{ fontSize: '5.5cqw', marginTop: '4cqw' }}
           initial={{ opacity: 0 }}
           animate={phase >= 1 ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
         >
           Curated self-improvement content.
         </motion.p>
-        
+
         <motion.div
-          className="mt-12 bg-color-primary text-white px-8 py-3 rounded-full inline-block font-bold text-[4.5vw] shadow-[0_10px_40px_rgba(0,209,178,0.4)]"
+          className="text-white font-bold rounded-full inline-block"
+          style={{
+            marginTop: '10cqw',
+            background: 'var(--color-primary)',
+            padding: '3cqw 8cqw',
+            fontSize: '5cqw',
+            boxShadow: '0 10px 40px rgba(0,209,178,0.4)',
+          }}
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={phase >= 2 ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }}
           transition={{ type: 'spring', damping: 15, stiffness: 300 }}
@@ -57,24 +68,27 @@ export function Scene5() {
         </motion.div>
       </div>
 
-      {/* Decorative clean UI elements */}
-      <motion.div 
-        className="absolute top-[10vh] left-[10vw] w-[15vw] h-[2vw] bg-color-text-muted/20 rounded-full"
+      {/* Decorative clean UI lines */}
+      <motion.div
+        className="absolute bg-[#64748B]/20 rounded-full"
+        style={{ top: '10vh', left: '10cqw', height: '2cqw' }}
         initial={{ width: 0 }}
-        animate={{ width: '15vw' }}
+        animate={{ width: '15cqw' }}
         transition={{ duration: 1, delay: 1 }}
       />
-      <motion.div 
-        className="absolute top-[15vh] left-[10vw] w-[25vw] h-[2vw] bg-color-text-muted/20 rounded-full"
+      <motion.div
+        className="absolute bg-[#64748B]/20 rounded-full"
+        style={{ top: 'calc(10vh + 4cqw)', left: '10cqw', height: '2cqw' }}
         initial={{ width: 0 }}
-        animate={{ width: '25vw' }}
+        animate={{ width: '25cqw' }}
         transition={{ duration: 1, delay: 1.2 }}
       />
-      
-      <motion.div 
-        className="absolute bottom-[10vh] right-[10vw] w-[20vw] h-[2vw] bg-color-primary/30 rounded-full"
+
+      <motion.div
+        className="absolute rounded-full"
+        style={{ bottom: '10vh', right: '10cqw', height: '2cqw', background: 'rgba(0,209,178,0.3)' }}
         initial={{ width: 0 }}
-        animate={{ width: '20vw' }}
+        animate={{ width: '20cqw' }}
         transition={{ duration: 1, delay: 1.4 }}
       />
     </motion.div>
