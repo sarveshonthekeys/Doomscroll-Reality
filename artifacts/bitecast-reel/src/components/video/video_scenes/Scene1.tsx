@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export function Scene1() {
   const [phase, setPhase] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timers = [
@@ -10,6 +11,14 @@ export function Scene1() {
       setTimeout(() => setPhase(2), 1500),
     ];
     return () => timers.forEach(t => clearTimeout(t));
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.playbackRate = 1.2;
+    video.play().catch(() => {});
   }, []);
 
   return (
@@ -20,17 +29,29 @@ export function Scene1() {
       exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
       transition={{ duration: 0.8 }}
     >
-      <motion.img
-        src={`${import.meta.env.BASE_URL}images/scrolling1.jpg`}
-        className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
-        animate={{ scale: [1, 1.15], filter: ['blur(0px)', 'blur(5px)'] }}
-        transition={{ duration: 3, ease: 'linear' }}
+      {/* Background video */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.55, filter: 'saturate(0.3) brightness(0.65)' }}
+        src={`${import.meta.env.BASE_URL}videos/scrolling.mp4`}
+        muted
+        playsInline
+        loop
+      />
+
+      {/* Dark vignette overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.65) 100%)',
+        }}
       />
 
       <div className="relative z-10 w-full" style={{ padding: '0 10cqw' }}>
         <motion.div
-          className="bg-[var(--color-accent)] rounded-full inline-block shadow-[0_0_30px_rgba(244,63,94,0.5)] mb-[6cqw]"
-          style={{ padding: '2cqw 6cqw' }}
+          className="bg-[var(--color-accent)] rounded-full inline-block mb-[6cqw]"
+          style={{ padding: '2cqw 6cqw', boxShadow: '0 0 24px rgba(204,0,0,0.5)' }}
           initial={{ opacity: 0, y: 20, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ type: 'spring', damping: 20, stiffness: 300, delay: 0.2 }}
@@ -50,7 +71,7 @@ export function Scene1() {
 
           <motion.span
             className="block"
-            style={{ color: 'var(--color-primary)' }}
+            style={{ color: 'var(--color-accent)' }}
             initial={{ opacity: 0, x: 50 }}
             animate={phase >= 1 ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
