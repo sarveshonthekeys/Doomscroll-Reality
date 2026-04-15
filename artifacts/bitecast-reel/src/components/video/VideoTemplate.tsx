@@ -65,7 +65,7 @@ export default function VideoTemplate() {
         <div className="absolute inset-0">
           <motion.div
             className="absolute inset-0 bg-gradient-to-b from-[#0A1128] to-[#050814]"
-            animate={{ opacity: currentScene >= 3 ? 0.3 : 1 }}
+            animate={{ opacity: currentScene <= 1 ? 0 : currentScene >= 3 ? 0.3 : 1 }}
             transition={{ duration: 1 }}
           />
 
