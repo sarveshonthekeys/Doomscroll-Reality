@@ -47,7 +47,7 @@ export default function VideoTemplate() {
           muted
           playsInline
           loop
-          animate={{ opacity: currentScene <= 1 ? 0.55 : 0 }}
+          animate={{ opacity: currentScene <= 1 ? 0.3 : 0 }}
           transition={{ duration: 0.8 }}
         />
 

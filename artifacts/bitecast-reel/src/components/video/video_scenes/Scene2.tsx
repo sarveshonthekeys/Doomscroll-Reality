@@ -27,15 +27,15 @@ export function Scene2() {
         style={{
           width: '80cqw',
           height: '80cqw',
-          borderColor: 'rgba(204,0,0,0.3)',
+          borderColor: 'rgba(180,180,180,0.25)',
         }}
         initial={{ rotate: 0, opacity: 0 }}
         animate={{ rotate: 360, opacity: 1 }}
         transition={{ rotate: { duration: 3, ease: 'linear' }, opacity: { duration: 0.5 } }}
       >
         <div
-          className="absolute bg-[var(--color-accent)] origin-bottom"
-          style={{ width: '1px', height: '40%', top: '10%', boxShadow: '0 0 15px rgba(204,0,0,1)' }}
+          className="absolute bg-[#AAAAAA] origin-bottom"
+          style={{ width: '1px', height: '40%', top: '10%', boxShadow: '0 0 15px rgba(180,180,180,0.6)' }}
         />
       </motion.div>
 
@@ -52,7 +52,7 @@ export function Scene2() {
 
         <motion.h3
           className="font-bold uppercase tracking-widest"
-          style={{ fontSize: '9cqw', color: 'var(--color-accent)', marginTop: '-2cqw' }}
+          style={{ fontSize: '9cqw', color: '#AAAAAA', marginTop: '-2cqw' }}
           initial={{ opacity: 0, letterSpacing: '0em' }}
           animate={phase >= 1 ? { opacity: 1, letterSpacing: '0.1em' } : { opacity: 0, letterSpacing: '0em' }}
           transition={{ duration: 0.8, ease: 'easeOut' }}

@@ -34,7 +34,7 @@ export function Scene1() {
 
           <motion.span
             className="block"
-            style={{ color: 'var(--color-accent)' }}
+            style={{ color: '#AAAAAA' }}
             initial={{ opacity: 0, x: 50 }}
             animate={phase >= 1 ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
