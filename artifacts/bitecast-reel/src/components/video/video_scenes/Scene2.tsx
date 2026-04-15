@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export function Scene2() {
   const [phase, setPhase] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timers = [
@@ -10,6 +11,14 @@ export function Scene2() {
       setTimeout(() => setPhase(2), 1600),
     ];
     return () => timers.forEach(t => clearTimeout(t));
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 3;
+    video.playbackRate = 1.4;
+    video.play().catch(() => {});
   }, []);
 
   return (
@@ -20,11 +29,23 @@ export function Scene2() {
       exit={{ opacity: 0, filter: 'blur(20px)' }}
       transition={{ duration: 0.6 }}
     >
-      <motion.img
-        src={`${import.meta.env.BASE_URL}images/scrolling1.jpg`}
-        className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity grayscale"
-        animate={{ scale: [1.15, 1.3], rotate: [0, -5] }}
-        transition={{ duration: 3, ease: 'easeIn' }}
+      {/* Same scrolling video, continued from a later timestamp */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.3, filter: 'saturate(0.15) brightness(0.5)' }}
+        src={`${import.meta.env.BASE_URL}videos/scrolling.mp4`}
+        muted
+        playsInline
+        loop
+      />
+
+      {/* Dark vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%)',
+        }}
       />
 
       {/* Clock visual abstraction */}
@@ -33,15 +54,15 @@ export function Scene2() {
         style={{
           width: '80cqw',
           height: '80cqw',
-          borderColor: 'rgba(244,63,94,0.3)',
+          borderColor: 'rgba(204,0,0,0.3)',
         }}
         initial={{ rotate: 0, opacity: 0 }}
         animate={{ rotate: 360, opacity: 1 }}
         transition={{ rotate: { duration: 3, ease: 'linear' }, opacity: { duration: 0.5 } }}
       >
         <div
-          className="absolute bg-[var(--color-accent)] origin-bottom shadow-[0_0_15px_rgba(244,63,94,1)]"
-          style={{ width: '1px', height: '40%', top: '10%' }}
+          className="absolute bg-[var(--color-accent)] origin-bottom"
+          style={{ width: '1px', height: '40%', top: '10%', boxShadow: '0 0 15px rgba(204,0,0,1)' }}
         />
       </motion.div>
 
