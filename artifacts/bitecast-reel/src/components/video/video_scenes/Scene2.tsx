@@ -87,21 +87,6 @@ export function Scene2() {
           Later...
         </motion.h3>
 
-        {/* Endless scrolling UI metaphor */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 flex flex-col gap-[4cqw] opacity-20 pointer-events-none -z-10 overflow-hidden"
-          style={{ top: '30vh', width: '60cqw', height: '150vh' }}
-        >
-          {[...Array(10)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-full bg-white/20 rounded-xl flex-shrink-0"
-              style={{ height: '30cqw' }}
-              animate={{ y: ['0%', '-300%'] }}
-              transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-            />
-          ))}
-        </div>
       </div>
     </motion.div>
   );

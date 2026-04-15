@@ -49,16 +49,6 @@ export function Scene1() {
       />
 
       <div className="relative z-10 w-full" style={{ padding: '0 10cqw' }}>
-        <motion.div
-          className="bg-[var(--color-accent)] rounded-full inline-block mb-[6cqw]"
-          style={{ padding: '2cqw 6cqw', boxShadow: '0 0 24px rgba(204,0,0,0.5)' }}
-          initial={{ opacity: 0, y: 20, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ type: 'spring', damping: 20, stiffness: 300, delay: 0.2 }}
-        >
-          <span className="text-white font-bold tracking-widest uppercase" style={{ fontSize: '4cqw' }}>THE LOOP</span>
-        </motion.div>
-
         <h1 className="font-black leading-[1.15] text-white tracking-tight drop-shadow-2xl" style={{ fontSize: '11cqw' }}>
           <motion.span
             className="block"
