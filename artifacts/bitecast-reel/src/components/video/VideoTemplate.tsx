@@ -71,24 +71,25 @@ export default function VideoTemplate() {
 
           {/* Glow orb 1 */}
           <motion.div
-            className="absolute rounded-full blur-[80px] opacity-40 mix-blend-screen"
+            className="absolute rounded-full blur-[80px] mix-blend-screen"
             style={{ width: '120cqw', height: '120cqw', background: 'var(--color-primary)', top: 0, left: 0 }}
             animate={{
               x: currentScene === 0 ? '-30%' : currentScene === 1 ? '10%' : currentScene === 2 ? '-10%' : currentScene === 3 ? '40%' : '5%',
               y: currentScene === 0 ? '-20%' : currentScene === 1 ? '40%' : currentScene === 2 ? '10%' : currentScene === 3 ? '-20%' : '30%',
               scale: currentScene === 4 ? 1.5 : 1,
-              opacity: currentScene === 4 ? 0.2 : 0.4,
+              opacity: currentScene <= 1 ? 0 : currentScene === 4 ? 0.2 : 0.4,
             }}
             transition={{ duration: 3, ease: 'easeInOut' }}
           />
 
           {/* Glow orb 2 */}
           <motion.div
-            className="absolute rounded-full blur-[100px] opacity-30 mix-blend-screen"
+            className="absolute rounded-full blur-[100px] mix-blend-screen"
             style={{ width: '130cqw', height: '130cqw', background: 'var(--color-accent)', top: 0, left: 0 }}
             animate={{
               x: currentScene === 0 ? '40%' : currentScene === 1 ? '-20%' : currentScene === 2 ? '30%' : currentScene === 3 ? '-40%' : '-10%',
               y: currentScene === 0 ? '60%' : currentScene === 1 ? '-10%' : currentScene === 2 ? '50%' : currentScene === 3 ? '30%' : '-30%',
+              opacity: currentScene <= 1 ? 0 : 0.3,
             }}
             transition={{ duration: 4, ease: 'easeInOut' }}
           />
