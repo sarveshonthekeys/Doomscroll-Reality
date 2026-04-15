@@ -22,11 +22,10 @@ export function Scene3() {
     >
       <div className="absolute inset-0" style={{ background: '#0A0A0A' }} />
 
-      {/* Subtle red vignette */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(204,0,0,0.18) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(150,150,150,0.1) 100%)',
         }}
       />
 
@@ -77,7 +76,7 @@ export function Scene3() {
         <motion.path
           d="M 20 80 Q 50 20, 80 80"
           fill="transparent"
-          stroke="#CC0000"
+          stroke="#888888"
           strokeWidth="1"
           initial={{ pathLength: 0 }}
           animate={phase >= 1 ? { pathLength: 1 } : { pathLength: 0 }}

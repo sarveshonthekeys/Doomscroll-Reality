@@ -27,7 +27,7 @@ export function Scene5() {
         style={{
           width: '60cqw',
           height: '60cqw',
-          background: 'radial-gradient(circle, rgba(204,0,0,0.25) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(150,150,150,0.15) 0%, transparent 70%)',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -75%)',
@@ -80,7 +80,7 @@ export function Scene5() {
             background: 'var(--color-primary)',
             padding: '3cqw 8cqw',
             fontSize: '5cqw',
-            boxShadow: '0 10px 40px rgba(204,0,0,0.35)',
+            boxShadow: '0 10px 40px rgba(150,150,150,0.2)',
             letterSpacing: '0.05em',
           }}
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -108,7 +108,7 @@ export function Scene5() {
       />
       <motion.div
         className="absolute rounded-full"
-        style={{ bottom: '10vh', right: '10cqw', height: '1.5cqw', background: 'rgba(204,0,0,0.4)' }}
+        style={{ bottom: '10vh', right: '10cqw', height: '1.5cqw', background: 'rgba(150,150,150,0.3)' }}
         initial={{ width: 0 }}
         animate={{ width: '20cqw' }}
         transition={{ duration: 1, delay: 1.4 }}

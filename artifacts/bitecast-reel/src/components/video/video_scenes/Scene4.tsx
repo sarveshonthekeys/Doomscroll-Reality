@@ -45,7 +45,7 @@ export function Scene4() {
           src={`${import.meta.env.BASE_URL}images/split.png`}
           className="absolute inset-0 w-[200%] max-w-none h-full object-cover object-right right-0 ml-[-100%]"
         />
-        <div className="absolute inset-0 mix-blend-overlay" style={{ background: 'rgba(204,0,0,0.15)' }} />
+        <div className="absolute inset-0 mix-blend-overlay" style={{ background: 'rgba(150,150,150,0.1)' }} />
       </motion.div>
 
       {/* Center Text Overlay */}
