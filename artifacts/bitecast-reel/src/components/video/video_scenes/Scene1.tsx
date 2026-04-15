@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export function Scene1() {
   const [phase, setPhase] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timers = [
@@ -13,40 +12,14 @@ export function Scene1() {
     return () => timers.forEach(t => clearTimeout(t));
   }, []);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = 0;
-    video.playbackRate = 1.2;
-    video.play().catch(() => {});
-  }, []);
-
   return (
     <motion.div
-      className="absolute inset-0 flex items-center justify-center bg-black overflow-hidden"
+      className="absolute inset-0 flex items-center justify-center overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
       transition={{ duration: 0.8 }}
     >
-      {/* Background video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.55, filter: 'saturate(0.3) brightness(0.65)' }}
-        src={`${import.meta.env.BASE_URL}videos/scrolling.mp4`}
-        muted
-        playsInline
-        loop
-      />
-
-      {/* Dark vignette overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.65) 100%)',
-        }}
-      />
 
       <div className="relative z-10 w-full" style={{ padding: '0 10cqw' }}>
         <h1 className="font-black leading-[1.15] text-white tracking-tight drop-shadow-2xl" style={{ fontSize: '11cqw' }}>

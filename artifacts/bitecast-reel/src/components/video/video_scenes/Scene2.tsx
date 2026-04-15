@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export function Scene2() {
   const [phase, setPhase] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timers = [
@@ -13,40 +12,14 @@ export function Scene2() {
     return () => timers.forEach(t => clearTimeout(t));
   }, []);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = 3;
-    video.playbackRate = 1.4;
-    video.play().catch(() => {});
-  }, []);
-
   return (
     <motion.div
-      className="absolute inset-0 flex items-center justify-center bg-[#0a0a0a] overflow-hidden"
+      className="absolute inset-0 flex items-center justify-center overflow-hidden"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, filter: 'blur(20px)' }}
       transition={{ duration: 0.6 }}
     >
-      {/* Same scrolling video, continued from a later timestamp */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.3, filter: 'saturate(0.15) brightness(0.5)' }}
-        src={`${import.meta.env.BASE_URL}videos/scrolling.mp4`}
-        muted
-        playsInline
-        loop
-      />
-
-      {/* Dark vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%)',
-        }}
-      />
 
       {/* Clock visual abstraction */}
       <motion.div

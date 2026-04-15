@@ -38,6 +38,29 @@ export default function VideoTemplate() {
           }}
         />
 
+        {/* Persistent scrolling video — plays continuously across scenes 1 & 2 */}
+        <motion.video
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: 'saturate(0.25) brightness(0.6)' }}
+          src={`${import.meta.env.BASE_URL}videos/scrolling.mp4`}
+          autoPlay
+          muted
+          playsInline
+          loop
+          animate={{ opacity: currentScene <= 1 ? 0.55 : 0 }}
+          transition={{ duration: 0.8 }}
+        />
+
+        {/* Vignette over video */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.65) 100%)',
+          }}
+          animate={{ opacity: currentScene <= 1 ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        />
+
         {/* Persistent background layers */}
         <div className="absolute inset-0">
           <motion.div
