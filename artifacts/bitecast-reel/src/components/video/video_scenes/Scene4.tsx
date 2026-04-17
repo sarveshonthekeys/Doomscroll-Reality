@@ -55,11 +55,16 @@ export function Scene4() {
         animate={{ x: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.4 }}
       >
-        <motion.img
-          src={`${import.meta.env.BASE_URL}images/split.png`}
-          className="absolute inset-0 w-[200%] max-w-none h-full object-cover object-right right-0 ml-[-100%]"
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.75, filter: 'saturate(0.3) brightness(0.6)' }}
+          src={`${import.meta.env.BASE_URL}videos/clarity.mp4`}
+          autoPlay
+          muted
+          playsInline
+          loop
         />
-        <div className="absolute inset-0 mix-blend-overlay" style={{ background: 'rgba(150,150,150,0.1)' }} />
+        <div className="absolute inset-0 bg-black/30" />
       </motion.div>
 
       {/* Center Text Overlay */}
