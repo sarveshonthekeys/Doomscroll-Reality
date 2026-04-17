@@ -41,7 +41,7 @@ export default function VideoTemplate() {
         {/* Persistent scrolling video — plays continuously across scenes 1 & 2 */}
         <motion.video
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'saturate(0.25) brightness(0.6)' }}
+          style={{ filter: 'brightness(0.6)' }}
           src={`${import.meta.env.BASE_URL}videos/scrolling.mp4`}
           autoPlay
           muted

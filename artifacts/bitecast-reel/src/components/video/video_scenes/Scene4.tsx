@@ -38,7 +38,7 @@ export function Scene4() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.75, filter: 'saturate(0.3) brightness(0.6)' }}
+          style={{ opacity: 0.85, filter: 'brightness(0.65)' }}
           src={`${import.meta.env.BASE_URL}videos/chaos.mp4`}
           autoPlay
           muted
@@ -57,7 +57,7 @@ export function Scene4() {
       >
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.75, filter: 'saturate(0.3) brightness(0.6)' }}
+          style={{ opacity: 0.85, filter: 'brightness(0.65)' }}
           src={`${import.meta.env.BASE_URL}videos/clarity.mp4`}
           autoPlay
           muted
