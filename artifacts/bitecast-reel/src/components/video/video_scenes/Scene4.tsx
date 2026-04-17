@@ -33,7 +33,7 @@ export function Scene4() {
         className="w-1/2 h-full relative overflow-hidden border-r border-white/10"
         initial={{ x: '-100%' }}
         animate={{ x: 0 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.2 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
       >
         <video
           ref={videoRef}
@@ -53,7 +53,7 @@ export function Scene4() {
         className="w-1/2 h-full relative overflow-hidden"
         initial={{ x: '100%' }}
         animate={{ x: 0 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.4 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
       >
         <video
           className="absolute inset-0 w-full h-full object-cover"
