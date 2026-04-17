@@ -40,6 +40,7 @@ export function Scene4() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: 0.75, filter: 'saturate(0.3) brightness(0.6)' }}
           src={`${import.meta.env.BASE_URL}videos/chaos.mp4`}
+          autoPlay
           muted
           playsInline
           loop
