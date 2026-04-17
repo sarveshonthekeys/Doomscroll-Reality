@@ -30,7 +30,7 @@ export function Scene4() {
     >
       {/* Left Side: Chaos — video */}
       <motion.div
-        className="w-1/2 h-full relative border-r border-white/10"
+        className="w-1/2 h-full relative overflow-hidden border-r border-white/10"
         initial={{ x: '-100%' }}
         animate={{ x: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.2 }}
@@ -50,7 +50,7 @@ export function Scene4() {
 
       {/* Right Side: Clarity */}
       <motion.div
-        className="w-1/2 h-full relative"
+        className="w-1/2 h-full relative overflow-hidden"
         initial={{ x: '100%' }}
         animate={{ x: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.4 }}
