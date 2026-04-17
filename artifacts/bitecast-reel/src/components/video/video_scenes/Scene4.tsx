@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export function Scene4() {
   const [phase, setPhase] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timers = [
@@ -10,6 +11,13 @@ export function Scene4() {
       setTimeout(() => setPhase(2), 2000),
     ];
     return () => timers.forEach(t => clearTimeout(t));
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.play().catch(() => {});
   }, []);
 
   return (
@@ -20,18 +28,23 @@ export function Scene4() {
       exit={{ y: '-100%' }}
       transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
     >
-      {/* Left Side: Chaos */}
+      {/* Left Side: Chaos — video */}
       <motion.div
         className="w-1/2 h-full relative border-r border-white/10"
         initial={{ x: '-100%' }}
         animate={{ x: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.2 }}
       >
-        <motion.img
-          src={`${import.meta.env.BASE_URL}images/split.png`}
-          className="absolute inset-0 w-[200%] max-w-none h-full object-cover object-left opacity-60"
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.75, filter: 'saturate(0.3) brightness(0.6)' }}
+          src={`${import.meta.env.BASE_URL}videos/chaos.mp4`}
+          muted
+          playsInline
+          loop
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/30" />
       </motion.div>
 
       {/* Right Side: Clarity */}
